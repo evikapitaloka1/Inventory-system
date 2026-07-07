@@ -30,7 +30,7 @@
             <thead>
                 <tr>
                     <th>Kode</th>
-                    <th>Nama Barang</th>
+                    <th>Gambar</th> <th>Nama Barang</th>
                     <th>Kategori</th>
                     <th>Stok</th>
                     <th>Lokasi</th>
@@ -42,6 +42,15 @@
                 @forelse ($products as $product)
                     <tr>
                         <td>{{ $product->kode_barang }}</td>
+                        
+                        <td>
+                            @if ($product->gambar)
+                                <img src="{{ asset('storage/' . $product->gambar) }}" alt="{{ $product->nama_barang }}" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                            @else
+                                <span class="text-muted small">Tidak ada gambar</span>
+                            @endif
+                        </td>
+                        
                         <td>
                             <div class="fw-semibold">{{ $product->nama_barang }}</div>
                             @if ($product->isLowStock())
@@ -64,7 +73,7 @@
                         </td>
                     </tr>
                 @empty
-                    <tr><td colspan="7" class="text-center text-secondary py-4">Tidak ada data barang.</td></tr>
+                    <tr><td colspan="8" class="text-center text-secondary py-4">Tidak ada data barang.</td></tr>
                 @endforelse
             </tbody>
         </table>

@@ -300,3 +300,27 @@ CONTEXT:  unnamed portal parameter $2 = '' at C:/PROJECT/inventaris-app/vendor/l
 #70 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php(23): require_once('C://PROJECT//inve...')
 #71 {main}
 "} 
+[2026-07-07 16:43:22] local.ERROR: File does not exist at path C:\PROJECT\inventaris-app/database/migrations/2025_02_01_000001_add_borrowing_extra_fields.php. {"exception":"[object] (Illuminate\\Contracts\\Filesystem\\FileNotFoundException(code: 0): File does not exist at path C:\\PROJECT\\inventaris-app/database/migrations/2025_02_01_000001_add_borrowing_extra_fields.php. at C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Filesystem/Filesystem.php:152)
+[stacktrace]
+#0 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(588): Illuminate/Filesystem/Filesystem->requireOnce('C://PROJECT//inve...')
+#1 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(131): Illuminate/Database/Migrations/Migrator->requireFiles(Array)
+#2 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(117): Illuminate/Database/Migrations/Migrator->run(Array, Array)
+#3 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Database/Migrations/Migrator.php(658): Illuminate/Database/Console/Migrations/MigrateCommand->{closure:Illuminate/Database/Console/Migrations/MigrateCommand::runMigrations():110}()
+#4 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(110): Illuminate/Database/Migrations/Migrator->usingConnection(NULL, Object(Closure))
+#5 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Database/Console/Migrations/MigrateCommand.php(89): Illuminate/Database/Console/Migrations/MigrateCommand->runMigrations()
+#6 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Illuminate/Database/Console/Migrations/MigrateCommand->handle()
+#7 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Container/Util.php(43): Illuminate/Container/BoundMethod::{closure:Illuminate/Container/BoundMethod::call():35}()
+#8 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(95): Illuminate/Container/Util::unwrapIfClosure(Object(Closure))
+#9 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate/Container/BoundMethod::callBoundMethod(Object(Illuminate/Foundation/Application), Array, Object(Closure))
+#10 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Container/Container.php(696): Illuminate/Container/BoundMethod::call(Object(Illuminate/Foundation/Application), Array, Array, NULL)
+#11 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(213): Illuminate/Container/Container->call(Array)
+#12 C:/PROJECT/inventaris-app/vendor/symfony/console/Command/Command.php(341): Illuminate/Console/Command->execute(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#13 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Console/Command.php(182): Symfony/Component/Console/Command/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Illuminate/Console/OutputStyle))
+#14 C:/PROJECT/inventaris-app/vendor/symfony/console/Application.php(1117): Illuminate/Console/Command->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#15 C:/PROJECT/inventaris-app/vendor/symfony/console/Application.php(356): Symfony/Component/Console/Application->doRunCommand(Object(Illuminate/Database/Console/Migrations/MigrateCommand), Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#16 C:/PROJECT/inventaris-app/vendor/symfony/console/Application.php(195): Symfony/Component/Console/Application->doRun(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#17 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(198): Symfony/Component/Console/Application->run(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#18 C:/PROJECT/inventaris-app/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(1235): Illuminate/Foundation/Console/Kernel->handle(Object(Symfony/Component/Console/Input/ArgvInput), Object(Symfony/Component/Console/Output/ConsoleOutput))
+#19 C:/PROJECT/inventaris-app/artisan(14): Illuminate/Foundation/Application->handleCommand(Object(Symfony/Component/Console/Input/ArgvInput))
+#20 {main}
+"} 

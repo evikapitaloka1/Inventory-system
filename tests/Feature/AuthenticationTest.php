@@ -54,7 +54,7 @@ class AuthenticationTest extends TestCase
             'password_confirmation' => 'password123',
         ]);
 
-        $response->assertRedirect(route('dashboard'));
+        $response->assertRedirect(route('login'));
         $this->assertDatabaseHas('users', ['email' => 'baru@inventaris.test']);
 
         $user = User::where('email', 'baru@inventaris.test')->first();

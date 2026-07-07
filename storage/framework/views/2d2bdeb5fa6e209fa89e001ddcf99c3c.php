@@ -28,7 +28,7 @@
             <thead>
                 <tr>
                     <th>Kode</th>
-                    <th>Nama Barang</th>
+                    <th>Gambar</th> <th>Nama Barang</th>
                     <th>Kategori</th>
                     <th>Stok</th>
                     <th>Lokasi</th>
@@ -40,6 +40,15 @@
                 <?php $__empty_1 = true; $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                     <tr>
                         <td><?php echo e($product->kode_barang); ?></td>
+                        
+                        <td>
+                            <?php if($product->gambar): ?>
+                                <img src="<?php echo e(asset('storage/' . $product->gambar)); ?>" alt="<?php echo e($product->nama_barang); ?>" class="img-thumbnail" style="width: 60px; height: 60px; object-fit: cover;">
+                            <?php else: ?>
+                                <span class="text-muted small">Tidak ada gambar</span>
+                            <?php endif; ?>
+                        </td>
+                        
                         <td>
                             <div class="fw-semibold"><?php echo e($product->nama_barang); ?></div>
                             <?php if($product->isLowStock()): ?>
@@ -62,7 +71,7 @@
                         </td>
                     </tr>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
-                    <tr><td colspan="7" class="text-center text-secondary py-4">Tidak ada data barang.</td></tr>
+                    <tr><td colspan="8" class="text-center text-secondary py-4">Tidak ada data barang.</td></tr>
                 <?php endif; ?>
             </tbody>
         </table>
@@ -74,5 +83,4 @@
 </div>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\PROJECT\inventaris-app\resources\views/products/index.blade.php ENDPATH**/ ?>

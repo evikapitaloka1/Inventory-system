@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +22,11 @@ Route::get('/', function () {
         'totalBarang' => \App\Models\Product::sum('stok'),
         'totalJenis' => \App\Models\Product::count(),
         'totalKategori' => \App\Models\Category::count(),
-        'featuredProducts' => \App\Models\Product::with('category')->where('stok', '>', 0)->latest()->limit(6)->get(),
+       'featuredProducts' => \App\Models\Product::with('category')
+    ->where('stok', '>', 0)
+    ->latest()
+    ->limit(12) // <-- Ubah angka 6 menjadi 12 di sini
+    ->get(),
     ]);
 })->name('landing');
 
@@ -78,7 +83,7 @@ Route::middleware('auth')->group(function () {
     Route::post('borrowings/{borrowing}/reject', [BorrowingController::class, 'reject'])
         ->middleware('role:admin,manager')->name('borrowings.reject');
     Route::post('borrowings/{borrowing}/return', [BorrowingController::class, 'returnItem'])
-    ->middleware('role:admin')->name('borrowings.return');
+        ->middleware('role:admin')->name('borrowings.return');
 
     // Laporan / Export (bonus fitur)
     Route::get('reports', [ReportController::class, 'index'])->name('reports.index');
@@ -86,4 +91,14 @@ Route::middleware('auth')->group(function () {
     Route::get('reports/products/excel', [ReportController::class, 'productsExcel'])->name('reports.products.excel');
     Route::get('reports/borrowings/pdf', [ReportController::class, 'borrowingsPdf'])->name('reports.borrowings.pdf');
     Route::get('reports/borrowings/excel', [ReportController::class, 'borrowingsExcel'])->name('reports.borrowings.excel');
+
+    // Manajemen User & Role (khusus admin)
+    Route::middleware('role:admin')->group(function () {
+        Route::get('users', [UserController::class, 'index'])->name('users.index');
+        Route::get('users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('users', [UserController::class, 'store'])->name('users.store');
+        Route::get('users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+        Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+    });
 });

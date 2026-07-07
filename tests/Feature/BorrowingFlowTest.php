@@ -90,14 +90,17 @@ class BorrowingFlowTest extends TestCase
         ]);
         $borrowing->details()->create(['product_id' => $product->id, 'jumlah' => 2]);
 
-        $response = $this->actingAs($admin)->post(route('borrowings.return', $borrowing));
+        // Ubah menjadi seperti ini:
+$response = $this->actingAs($admin)->post(route('borrowings.return', $borrowing), [
+    'kondisi_saat_kembali' => 'baik'
+]);
 
         $response->assertRedirect();
         $this->assertSame('dikembalikan', $borrowing->fresh()->status);
         $this->assertSame(7, $product->fresh()->stok);
     }
 
-    public function test_admin_can_reject_a_pending_borrowing(): void
+ public function test_admin_can_reject_a_pending_borrowing(): void
     {
         $admin = User::factory()->admin()->create();
         $staff = User::factory()->staff()->create();
@@ -113,7 +116,12 @@ class BorrowingFlowTest extends TestCase
         ]);
         $borrowing->details()->create(['product_id' => $product->id, 'jumlah' => 1]);
 
-        $this->actingAs($admin)->post(route('borrowings.reject', $borrowing))->assertRedirect();
+        // --- BAGIAN INI YANG DIUBAH ---
+        // Sisipkan array ['alasan_penolakan' => '...'] di dalam method post()
+        $this->actingAs($admin)->post(route('borrowings.reject', $borrowing), [
+            'alasan_penolakan' => 'Maaf, barang sedang dalam perbaikan dan tidak bisa dipinjam.'
+        ])->assertRedirect();
+        // ------------------------------
 
         $this->assertSame('ditolak', $borrowing->fresh()->status);
         $this->assertSame(5, $product->fresh()->stok);

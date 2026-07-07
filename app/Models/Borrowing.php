@@ -15,6 +15,9 @@ class Borrowing extends Model
         'tanggal_kembali',
         'status',
         'catatan',
+        'alasan_penolakan',
+        'foto_pengembalian',
+        'catatan_pengembalian',
         'approved_by',
     ];
 
@@ -64,5 +67,10 @@ class Borrowing extends Model
             'ditolak' => 'text-bg-danger',
             default => 'text-bg-secondary',
         };
+    }
+
+    public function fotoPengembalianUrl(): ?string
+    {
+        return $this->foto_pengembalian ? asset('storage/'.$this->foto_pengembalian) : null;
     }
 }
