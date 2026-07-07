@@ -1,0 +1,132 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root,
+[data-bs-theme="light"] {
+  --bs-primary: #7C3AED;
+  --bs-primary-rgb: 124, 58, 237;
+  --bs-link-color: #7C3AED;
+  --bs-link-hover-color: #6D28D9;
+  --accent: #06B6D4;
+  --bg-page: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-surface-2: #F1F5F9;
+  --border-soft: #E2E8F0;
+}
+
+[data-bs-theme="dark"] {
+  --bs-primary: #8B5CF6;
+  --bs-primary-rgb: 139, 92, 246;
+  --bs-body-bg: #09090E;
+  --bs-body-color: #F1F5F9;
+  --accent: #22D3EE;
+  --bg-page: #09090E;
+  --bg-surface: #14141E;
+  --bg-surface-2: #1A1A26;
+  --border-soft: #262636;
+  --bs-border-color: #262636;
+  --bs-tertiary-bg: #1A1A26;
+  --bs-secondary-bg: #14141E;
+}
+
+body {
+  background-color: var(--bg-page);
+  transition: background-color .2s ease, color .2s ease;
+}
+
+/* Cards: the classic Bootstrap dark-mode bug fix.
+   Bootstrap 5.3's [data-bs-theme] color-mode variables must cascade to .card,
+   so we key card backgrounds off the CSS variables instead of hardcoded colors. */
+.card {
+  background-color: var(--bg-surface);
+  border-color: var(--border-soft);
+  color: var(--bs-body-color);
+}
+
+.bg-surface-2 { background-color: var(--bg-surface-2) !important; }
+
+.navbar-brand-gradient {
+  background: linear-gradient(135deg, #7C3AED, #06B6D4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background-color: var(--bg-surface);
+  border-right: 1px solid var(--border-soft);
+}
+
+.sidebar .nav-link {
+  color: var(--bs-body-color);
+  border-radius: .5rem;
+  padding: .6rem .9rem;
+  margin-bottom: .15rem;
+  opacity: .8;
+}
+
+.sidebar .nav-link.active {
+  background: linear-gradient(135deg, rgba(124,58,237,.15), rgba(6,182,212,.10));
+  color: var(--bs-primary);
+  opacity: 1;
+  font-weight: 600;
+}
+
+.sidebar .nav-link:hover { opacity: 1; background-color: var(--bg-surface-2); }
+
+.topbar {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.stat-card {
+  border-radius: 1rem;
+  border: 1px solid var(--border-soft);
+  background-color: var(--bg-surface);
+}
+
+.stat-icon {
+  width: 48px; height: 48px;
+  border-radius: .85rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at top left, rgba(124,58,237,.20), transparent 55%),
+              radial-gradient(circle at bottom right, rgba(6,182,212,.18), transparent 55%),
+              var(--bg-page);
+}
+
+.btn-primary {
+  background-color: #7C3AED;
+  border-color: #7C3AED;
+}
+.btn-primary:hover { background-color: #6D28D9; border-color: #6D28D9; }
+
+.product-thumb {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: .75rem .75rem 0 0;
+  background-color: var(--bg-surface-2);
+}
+
+.badge-soft {
+  background-color: rgba(124,58,237,.12);
+  color: var(--bs-primary);
+}
+
+.auth-panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 1.25rem;
+}
+
+@media (max-width: 991.98px) {
+  .sidebar { position: fixed; z-index: 1040; left: -280px; transition: left .2s ease; }
+  .sidebar.show { left: 0; }
+}
