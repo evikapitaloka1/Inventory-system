@@ -158,9 +158,18 @@ CREATE TABLE borrowings (
     tanggal_pinjam DATE NOT NULL,
     tanggal_kembali_rencana DATE,
     tanggal_kembali DATE,
+
+    -- Kolom tambahan
+    foto_pengembalian VARCHAR(255),
+    catatan_pengembalian TEXT,
+
     status VARCHAR(20) NOT NULL DEFAULT 'pending'
         CHECK (status IN ('pending', 'disetujui', 'dipinjam', 'dikembalikan', 'ditolak')),
     catatan TEXT,
+
+    -- Kolom tambahan
+    alasan_penolakan TEXT,
+
     approved_by BIGINT REFERENCES users(id) ON DELETE SET NULL,
     created_at TIMESTAMP(0) WITHOUT TIME ZONE,
     updated_at TIMESTAMP(0) WITHOUT TIME ZONE
