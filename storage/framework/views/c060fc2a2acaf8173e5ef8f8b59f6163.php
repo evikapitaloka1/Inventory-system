@@ -1,7 +1,7 @@
 <?php $__env->startSection('title', 'Beranda'); ?>
 
 <?php $__env->startSection('content'); ?>
-<section class="container-xxl py-5">
+<section class="container py-5">
     <div class="row align-items-center g-5">
         <div class="col-lg-6">
             <span class="badge-soft rounded-pill px-3 py-2 mb-3 d-inline-block">
@@ -68,7 +68,7 @@
     </div>
 </section>
 
-<section class="container-xxl py-5">
+<section class="container py-5">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
             <h2 class="fw-bold mb-1">Barang Tersedia untuk Dipinjam</h2>
@@ -107,7 +107,7 @@
     </div>
 </section>
 
-<section class="container-xxl py-5">
+<section class="container py-5">
     <div class="row g-4 text-center">
         <div class="col-md-4">
             <div class="card stat-card p-4 h-100">
@@ -133,4 +133,5 @@
     </div>
 </section>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.guest', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\PROJECT\inventaris-app\resources\views/welcome.blade.php ENDPATH**/ ?>
