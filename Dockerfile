@@ -17,6 +17,14 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev
 
+# Pastikan semua folder storage & cache ada sebelum artisan cache dijalankan
+RUN mkdir -p storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache/data \
+    storage/logs \
+    bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
+
 RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
 
 EXPOSE 8080
