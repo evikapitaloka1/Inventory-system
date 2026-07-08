@@ -3,6 +3,8 @@
 Aplikasi web manajemen inventaris kantor, dibuat untuk **Challenge Seleksi Magang Sistem Informasi**
 (studi kasus PT Telkomsel). Dibangun dengan Laravel 11, PostgreSQL, dan Bootstrap 5.
 
+Link Demo : [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://inventory-system-production-49e8.up.railway.app/)
+
 ## Fitur
 
 - **Landing page publik** — statistik inventaris & daftar barang yang bisa dipinjam, sebelum login.
