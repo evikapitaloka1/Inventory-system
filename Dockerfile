@@ -53,10 +53,10 @@ RUN echo "upload_max_filesize = 20M\npost_max_size = 20M\nmax_execution_time = 3
 
 EXPOSE 8080
 
-CMD php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache && \
-    php artisan storage:link && \
-    php artisan migrate --force && \
-    php-fpm -D && \
-    nginx -g "daemon off;"
+RUN mkdir -p storage/framework/sessions \
+    storage/framework/views \
+    storage/framework/cache/data \
+    storage/logs \
+    bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
