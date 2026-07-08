@@ -2,8 +2,11 @@ FROM php:8.3-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git curl libpng-dev libonig-dev libxml2-dev libpq-dev zip unzip \
-    && docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd
+    git curl unzip zip \
+    libpng-dev libonig-dev libxml2-dev libpq-dev \
+    libzip-dev libsodium-dev libfreetype6-dev libjpeg62-turbo-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_pgsql mbstring exif pcntl bcmath gd zip sodium opcache xml dom simplexml
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
