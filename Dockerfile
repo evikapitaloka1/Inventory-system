@@ -26,16 +26,20 @@ RUN mkdir -p storage/framework/sessions \
     bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
-# Konfigurasi Nginx
+# Konfigurasi Nginx dengan limit upload yang lebih besar
 RUN echo 'server { \
     listen 8080; \
     root /app/public; \
     index index.php; \
+    client_max_body_size 20M; \
     location / { try_files $uri $uri/ /index.php?$query_string; } \
     location ~ \.php$ { \
         fastcgi_pass 127.0.0.1:9000; \
         fastcgi_index index.php; \
         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name; \
+        fastcgi_read_timeout 300; \
+        fastcgi_buffer_size 128k; \
+        fastcgi_buffers 4 256k; \
         include fastcgi_params; \
     } \
     location ~* \.(css|js|jpg|jpeg|png|gif|ico|svg)$ { \
@@ -43,6 +47,9 @@ RUN echo 'server { \
         add_header Cache-Control "public"; \
     } \
 }' > /etc/nginx/sites-available/default
+
+# Konfigurasi PHP upload limit
+RUN echo "upload_max_filesize = 20M\npost_max_size = 20M\nmax_execution_time = 300" > /usr/local/etc/php/conf.d/uploads.ini
 
 EXPOSE 8080
 
