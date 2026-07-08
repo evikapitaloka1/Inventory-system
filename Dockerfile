@@ -17,7 +17,7 @@ COPY . .
 
 RUN composer install --optimize-autoloader --no-dev
 
-# Pastikan semua folder storage & cache ada sebelum artisan cache dijalankan
+# Pastikan semua folder storage & cache ada
 RUN mkdir -p storage/framework/sessions \
     storage/framework/views \
     storage/framework/cache/data \
@@ -25,8 +25,12 @@ RUN mkdir -p storage/framework/sessions \
     bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
-
 EXPOSE 8080
 
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+# Cache config, migrate, dan serve semuanya dijalankan saat container START (runtime),
+# bukan saat build — supaya env variable dari Railway sudah tersedia
+CMD php artisan config:cache && \
+    php artisan route:cache && \
+    php artisan view:cache && \
+    php artisan migrate --force && \
+    php artisan serve --host=0.0.0.0 --port=$PORT
